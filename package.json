@@ -1,0 +1,37 @@
+{
+  "name": "mood_changer",
+  "version": "1.0.0",
+  "description": "Mood Changer is a responsive Web App designed to alter mood of e.g. depressed. \r Doing so through music, video's, pictures and more. \r It can help with Schizophrenia, Bipolar disorder, Depression, Anxiety and for anyone who wants to feel happier!",
+  "main": "index.js",
+  "scripts": {
+    "devStart": "nodemon index.js",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/allWebDevChat/Mood_Changer.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/allWebDevChat/Mood_Changer/issues"
+  },
+  "homepage": "https://github.com/allWebDevChat/Mood_Changer#readme",
+  "dependencies": {
+    "axios": "^0.21.0",
+    "bcrypt": "^5.0.0",
+    "body-parser": "^1.19.0",
+    "ejs": "^3.1.5",
+    "express": "^4.18.1",
+    "express-flash": "0.0.2",
+    "express-session": "^1.17.1",
+    "method-override": "^3.0.0",
+    "mongoose": "^5.13.15",
+    "passport": "^0.6.0",
+    "passport-local": "^1.0.0"
+  },
+  "devDependencies": {
+    "dotenv": "^8.6.0",
+    "nodemon": "^2.0.19"
+  }
+}
