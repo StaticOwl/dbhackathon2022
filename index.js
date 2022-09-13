@@ -34,28 +34,28 @@ mongoose.connect(process.env.MONGO_URL, { useNewUrlParser: true, useUnifiedTopol
 
 var users = [];
 
-// function fetchUsers() {
-//     User.find({}, function (err, foundUsers) {
-//         if (err) {
-//             console.log("error finding users: ", err);
-//         } else {
-//             users = foundUsers;
-//         }
-//     })
-// };
+function fetchUsers() {
+    User.find({}, function (err, foundUsers) {
+        if (err) {
+            console.log("error finding users: ", err);
+        } else {
+            users = foundUsers;
+        }
+    })
+};
 
-// fetchUsers();
+fetchUsers();
 
 
 //Give passport two ways to find users
-// initializePassport(passport,
-//     //find user by username
-//     (username) => {
-//         return users.find((user) => user.username === username);
-//     },
-//     //find user by id
-//     id => users.find(user => user.id === id)
-// );
+initializePassport(passport,
+    //find user by username
+    (username) => {
+        return users.find((user) => user.username === username);
+    },
+    //find user by id
+    id => users.find(user => user.id === id)
+);
 
 //Allows us to render ejs files instead of html files.
 //(ejs files are pretty much the same as html files. The only difference is that they are inclusive of javascript.)
@@ -66,91 +66,83 @@ app.use(express.static(__dirname + '/public')); //Tells our app to look inside t
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.urlencoded({ extended: false }));
 app.use(methodOverride("_method"));
-// app.use(flash());
-// app.use(
-//     session({
-//         secret: process.env.SESSION_SECRET,
-//         resave: false,
-//         saveUninitialized: false,
-//     })
-// );
-// app.use(passport.initialize());
-// app.use(passport.session());
-// app.use('/journals', journalsRouter);   // Make sure this is on the bottom of app.use section
+app.use(flash());
+app.use(
+    session({
+        secret: process.env.SESSION_SECRET,
+        resave: false,
+        saveUninitialized: false,
+    })
+);
+app.use(passport.initialize());
+app.use(passport.session());
+app.use('/journals', journalsRouter);   // Make sure this is on the bottom of app.use section
 
 //ROUTES
 
 //root route
 app.get('/', async (req, res) => {
-    // if (req.isAuthenticated()) {
-    //     var user = await User.findById(req.user._id);
-    //     delete user.password;
-    //     user.isSignedIn = true;
-    // } else {
-    //     var user = new User();
-    //     user.isSignedIn = false;
-    // }
-    var user = new User();
-    user.isSignedIn = false;
+    if (req.isAuthenticated()) {
+        var user = await User.findById(req.user._id);
+        delete user.password;
+        user.isSignedIn = true;
+    } else {
+        var user = new User();
+        user.isSignedIn = false;
+    }
     res.render("home.ejs", { user: user });
 })
 
 //contact route
 app.get('/contact', async (req, res) => {
-    // if (req.isAuthenticated()) {
-    //     var user = await User.findById(req.user._id);
-    //     delete user.password;
-    //     user.isSignedIn = true;
-    // } else {
-    //     var user = new User();
-    //     user.isSignedIn = false;
-    // }
-    var user = new User();
-    user.isSignedIn = false;
+    if (req.isAuthenticated()) {
+        var user = await User.findById(req.user._id);
+        delete user.password;
+        user.isSignedIn = true;
+    } else {
+        var user = new User();
+        user.isSignedIn = false;
+    }
     res.render("contact.ejs", { user: user });
 })
 
 //about route
 app.get('/about', async (req, res) => {
-    // if (req.isAuthenticated()) {
-    //     var user = await User.findById(req.user._id);
-    //     delete user.password;
-    //     user.isSignedIn = true;
-    // } else {
-    //     var user = new User();
-    //     user.isSignedIn = false;
-    // }
-    var user = new User();
-    user.isSignedIn = false;
+    if (req.isAuthenticated()) {
+        var user = await User.findById(req.user._id);
+        delete user.password;
+        user.isSignedIn = true;
+    } else {
+        var user = new User();
+        user.isSignedIn = false;
+    }
     res.render("about.ejs", { user: user });
 })
 
 app.get('/mood/:userMood', async (req, res) => {
-    // if (req.isAuthenticated()) {
-    //     var user = await User.findById(req.user._id);
-    //     delete user.password;
-    //     user.isSignedIn = true;
-    // } else {
-    //     var user = new User();
-    //     user.isSignedIn = false;
-    // }
-    var user = new User();
-    user.isSignedIn = false;
+    if (req.isAuthenticated()) {
+        var user = await User.findById(req.user._id);
+        delete user.password;
+        user.isSignedIn = true;
+    } else {
+        var user = new User();
+        user.isSignedIn = false;
+    }
     var mood = req.params.userMood;
     res.render("healing/index.ejs", { mood: mood, user: user });
 })
 
 app.get('/healing/:healing_method/:userMood?', async (req, res) => {
-    // if (req.isAuthenticated()) {
-    //     var user = await User.findById(req.user._id);
-    //     delete user.password;
-    //     user.isSignedIn = true;
-    // } else {
-    //     var user = new User();
-    //     user.isSignedIn = false;
-    // }
-    var user = new User();
-    user.isSignedIn = false;
+    if (req.isAuthenticated()) {
+        var user = await User.findById(req.user._id);
+        delete user.password;
+        user.isSignedIn = true;
+    } else {
+        var user = new User();
+        user.isSignedIn = false;
+    }
+    // var user = new User();
+    // user.isSignedIn = false;
     var mood = req.params.userMood;
     var healing_method = req.params.healing_method;
     switch (healing_method) {
@@ -179,67 +171,71 @@ app.get('/healing/:healing_method/:userMood?', async (req, res) => {
 })
 
 
-// app.get("/users/login", checkNotAuthenticated, (req, res) => {
-//     var user = new User();
-//     user.isSignedIn = false;
-//     res.render("user/login.ejs", { user: user });
-// });
+app.get("/users/login", checkNotAuthenticated, (req, res) => {
+    var user = new User();
+    user.isSignedIn = false;
+    res.render("user/login.ejs", { user: user });
+});
 
 
-// app.get("/users/register", checkNotAuthenticated, (req, res) => {
-//     var user = new User();
-//     user.isSignedIn = false;
-//     res.render("user/register.ejs", { user: user });
-// });
+app.get("/users/register", checkNotAuthenticated, (req, res) => {
+    var user = new User();
+    user.isSignedIn = false;
+    res.render("user/register.ejs", { user: user });
+});
 
-// app.post(
-//     "/users/login", checkNotAuthenticated,
-//     passport.authenticate("local", {
-//         successRedirect: "/journals",
-//         failureRedirect: "/users/login",
-//         failureFlash: true,
-//     })
-// );
+app.post(
+    "/users/login", checkNotAuthenticated,
+    passport.authenticate("local", {
+        successRedirect: "/journals",
+        failureRedirect: "/users/login",
+        failureFlash: true,
+    })
+);
 
 
 // bcrypt.hash() is an async function, so the callback needs to be async. We also need to await for the password to hash before we save it.
-// app.post("/users/register", checkNotAuthenticated, async (req, res) => {
-//     // 10 is generally a fast, but also safe setting for hashing a password using bcrypt
+app.post("/users/register", checkNotAuthenticated, async (req, res) => {
+    // 10 is generally a fast, but also safe setting for hashing a password using bcrypt
 
 
-//     try {
-//         passReq.meetsMinReq(req.body.password);
-//         passReq.meetsMaxReq(req.body.password);
-//         passReq.hasUpperCase(req.body.password);
-//         passReq.hasLowerCase(req.body.password);
-//         passReq.hasNumber(req.body.password);
-//         passReq.notContainUsername(req.body.password, req.body.username);
-//         passReq.notDescendOrAscend(req.body.password);
-//         const hashedPassword = await bcrypt.hash(req.body.password, 10);
-//         var newUser = {
-//             username: req.body.username,
-//             password: hashedPassword,
-//         };
-//         User.create(newUser, function (err, createdUser) {
-//             if (err) {
-//                 console.log(err);
-//             } else {
-//                 fetchUsers();
-//                 res.redirect('/users/login');
-//             }
-//         })
-//     } catch (e) {
-//         var user = new User();
-//         user.isSignedIn = false;
-//         res.render("user/register.ejs", { messages: { error: e }, user: user });
-//     }
-// });
+    try {
+        passReq.meetsMinReq(req.body.password);
+        passReq.meetsMaxReq(req.body.password);
+        passReq.hasUpperCase(req.body.password);
+        passReq.hasLowerCase(req.body.password);
+        passReq.hasNumber(req.body.password);
+        passReq.notContainUsername(req.body.password, req.body.username);
+        passReq.notDescendOrAscend(req.body.password);
+        const hashedPassword = await bcrypt.hash(req.body.password, 10);
+        var newUser = {
+            username: req.body.username,
+            password: hashedPassword,
+        };
+        User.create(newUser, function (err, createdUser) {
+            if (err) {
+                console.log(err);
+            } else {
+                fetchUsers();
+                res.redirect('/users/login');
+            }
+        })
+    } catch (e) {
+        var user = new User();
+        user.isSignedIn = false;
+        res.render("user/register.ejs", { messages: { error: e }, user: user });
+    }
+});
 
 
-// app.delete("/users/logout", checkAuthenticated, (req, res) => {
-//     req.logout();
-//     res.redirect("/");
-// })
+app.delete("/users/logout", checkAuthenticated, (req, res) => {
+    req.logout(function(err) {
+        if (err) { 
+            return next(err); 
+        }
+        res.redirect('/');
+      });
+})
 
 
 function checkAuthenticated(req, res, next) {
@@ -269,6 +265,8 @@ app.get('/getPicture/:selected', async (req, res) => {
                 Authorization: process.env.PIC_API_KEY
             }
         }
+        console.log("Selected: "+ selected)
+        console.log("Config "+ config)
         var response = await axios.get('https://api.unsplash.com/photos/random?query=' + selected, config)
 
         response = response.data;
