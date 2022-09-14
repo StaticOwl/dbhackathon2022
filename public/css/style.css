@@ -7,7 +7,7 @@ body {
   width: fill-available;
   font-family: 'Poppins', sans-serif;
   color: white;
-  background: center/cover no-repeat url(/images/clouds.jpg);
+  background: center/cover no-repeat url(/images/samplebg.jpg);
   min-height: 100vh;
   position: relative;
   display: flex;
@@ -46,6 +46,7 @@ h1 {
 /* Block Buttons at bottom of page - Start */
 .bottom-btn {
   margin-bottom: 0.46875em;
+  padding-top: 100px;
 }
 
 .blue-btn {
@@ -460,10 +461,6 @@ h1 {
   margin-bottom: 0.94em;
   border-radius: 7px;
   padding: 1em 1em;
-}
-
-.help-box:nth-of-type(2) {
-  /* height: 16.5em */
 }
 
 .help-box h2 {
@@ -1326,8 +1323,6 @@ h1 {
   .music-wrap {
     height: 25.5em;
   }
-
-  .show-wrap {}
 }
 
 @media screen and (min-width: 830px) {
