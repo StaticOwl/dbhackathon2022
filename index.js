@@ -164,6 +164,9 @@ app.get('/healing/:healing_method/:userMood?', async (req, res) => {
         case "quote":
             res.render('healing/quote.ejs', { mood: mood, healing_method: healing_method, user: user });
             break;
+        case "talktome":
+            res.render('healing/talktome.ejs', { mood: mood, healing_method: healing_method, user: user });
+            break;
         default:
             console.log("unrecognized healing method: " + healing_method);
             res.render('home.ejs', { user: user });
