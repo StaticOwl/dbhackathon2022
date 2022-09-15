@@ -1,14 +1,16 @@
 /* ------------------Basics Start---------------------- */
 
 body {
-  width: 100%;
+  width: auto;
+  height: auto;
   width: -moz-available;          /* WebKit-based browsers will ignore this. */
   width: -webkit-fill-available;  /* Mozilla-based browsers will ignore this. */
   width: fill-available;
   font-family: 'Poppins', sans-serif;
   color: white;
-  background: center/cover no-repeat url(/images/samplebg.jpg);
-  min-height: 100vh;
+  background: center/auto no-repeat url(/images/samplebg.jpg);
+  /* background-position: initial; */
+  /* min-height: 100vh; */
   position: relative;
   display: flex;
   flex-flow: column;
@@ -46,7 +48,7 @@ h1 {
 /* Block Buttons at bottom of page - Start */
 .bottom-btn {
   margin-bottom: 0.46875em;
-  padding-top: 100px;
+  padding-top: 2em;
 }
 
 .blue-btn {
@@ -115,17 +117,31 @@ h1 {
 
 .drop-wrap {
   margin: 0.5em auto;
+  padding-left: 1em;
+  padding-top: 1em;
+}
+
+.drop img {
+  width: 30%;
+  height: 100%;
+  margin: -75px 0 0 -100px;
 }
 
 .drop {
-  width: 5.86em;
-  fill: #ffffff;
+  width: 8em;
+  height: 8em;
   margin-bottom: 0.8em;
+}
+
+.drop:hover {
+  stroke: red;
 }
 
 h1 {
   line-height: 45.5px;
-  margin-bottom: 1.6em;
+  margin-bottom: 0.1em;
+  margin-top: 1em;
+  text-align: center;
 }
 
 
@@ -145,7 +161,7 @@ h1 {
 #moods-wrap {
 
   position: relative;
-  height: 20em;
+  height: auto;
   width: 100%;
   margin: 0 auto;
   padding: 0;
@@ -169,7 +185,7 @@ h1 {
 }
 
 .options-content {
-  margin-top: 15em;
+  margin-top: 3em;
   margin-bottom: 0.4em;
 }
 
@@ -592,7 +608,7 @@ h1 {
 #picture .mt-3 {
   margin-top: 0 !important;
   text-align: center;
-  margin-bottom: 6em;
+  margin-bottom: 1em;
 }
 
 #picture .mt-3,
@@ -887,7 +903,7 @@ h1 {
   }
 
   #picture .mt-3 {
-    margin-bottom: 3em;
+    margin-bottom: 1em;
   }
 
   /* @@@@@@@@!- (Cute)Video.ejs End -!@@@@@@@@ */
@@ -912,6 +928,7 @@ h1 {
   .header h1.display-5 {
     font-size: 4em;
     margin-bottom: 0.5em;
+    padding-top: 1em;
   }
 
   .mood-txt {
@@ -1003,6 +1020,7 @@ h1 {
   .header h1.display-5 {
     font-size: 3.5em;
     margin-bottom: 0.5em;
+    padding-top: 1em;
   }
 
   .drop {
@@ -1065,6 +1083,7 @@ h1 {
   .header h1.display-5 {
     font-size: 3em;
     margin-bottom: 0.4em;
+    padding-top: 1em;
   }
 
   .drop {
@@ -1263,7 +1282,8 @@ h1 {
 
   /* @@@@@@@@!- Home Start -!@@@@@@@@ */
   .drop {
-    width: 8em;
+    width: 4em;
+    height: 4em;
   }
 
   /* @@@@@@@@!- Home End -!@@@@@@@@ */

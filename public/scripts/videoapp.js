@@ -13,8 +13,8 @@ const addNewPicture = async () => {
     const img = document.createElement("img");
     const credits = document.createElement('div');
 
-    const author = "https://unsplash.com/@" + picture.data.user.username + "?utm_source=Mood_Booster&utm_medium=referral";
-    credits.innerHTML = "Photo by " + "<a href = " + author + ">" + picture.data.user.name + "</a>" + " on " + "<a href = 'https://unsplash.com/?utm_source=Mood_Booster&utm_medium=referral'>" + "Unsplash" + "</a>";
+    // const author = "https://unsplash.com/@" + picture.data.user.username + "?utm_source=Mood_Booster&utm_medium=referral";
+    // credits.innerHTML = "Photo by " + "<a href = " + author + ">" + picture.data.user.name + "</a>" + " on " + "<a href = 'https://unsplash.com/?utm_source=Mood_Booster&utm_medium=referral'>" + "Unsplash" + "</a>";
     img.setAttribute('class', "rounded");
     img.src = picture.data.urls.raw + "&fit=fill&fill=blur&w=400&h=400";
     credits.setAttribute('class', 'mt-3');
