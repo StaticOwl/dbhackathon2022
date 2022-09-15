@@ -1,0 +1,27 @@
+<%- include('../partials/header.ejs') %>
+
+<main>
+
+  <div class="content text-center">
+
+    <div class="container text-center home-header">
+      <div class="header">
+        <h1 class="display-5">Tell Us Why</h1>
+      </div>
+    </div>
+
+    <div id="moods-wrap" class="container">
+      <div class="container">
+        <a href="/mood/anxious"><button type="button" class="btn mood-box anxious"><span class="mood-txt"><%=option1%></span></button></a>
+        <a href="/mood/sad"><button type="button" class="btn mood-box"><span class="mood-txt"><%=option2%></span></button></a>
+      </div>
+      <div class="container">
+        <a href="/mood/lonely"><button type="button" class="btn mood-box"><span class="mood-txt"><%=option3%></span></button></a>
+        <a href="/mood/angry"><button type="button" class="btn mood-box"><span class="mood-txt"><%=option4%></span></button></a>
+        </div>
+    </div>
+
+  </div>
+</main>
+
+<%- include('../partials/footer.ejs') %>

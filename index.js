@@ -22,6 +22,7 @@ const initializePassport = require("./public/serverjs/passport-config.js");
 var Journal = require('./models/journal');
 var User = require('./models/user');
 var axios = require('axios');
+const { options } = require("./routes/journals.js");
 
 console.log("Check"+ process.env.MONGO_URL)
 
@@ -131,19 +132,18 @@ app.get('/mood/:userMood', async (req, res) => {
     var mood = req.params.userMood;
     switch(mood){
         case "anxious":
-            res.render("healing/index.ejs", { mood: mood, user: user, adjective: getMoodAdjective(mood) });
+            res.render("healing/mood.ejs", { mood: mood, user: user, option1: "a", option2: "b", option3: "c", option4: "d"});
             break;
         case "sad":
-            res.render("healing/music.ejs", { mood: mood, user: user, adjective: getMoodAdjective(mood) });
+            res.render("healing/mood.ejs", { mood: mood, user: user,option1: "e", option2: "f", option3: "g", option4: "h"});
             break;
         case "angry":
-            res.render("healing/music.ejs", { mood: mood, user: user, adjective: getMoodAdjective(mood) });
+            res.render("healing/mood.ejs", { mood: mood, user: user,option1: "i", option2: "j", option3: "k", option4: "l"});
             break;
         case "lonely":
-            res.render("healing/music.ejs", { mood: mood, user: user, adjective: getMoodAdjective(mood) });
+            res.render("healing/mood.ejs", { mood: mood, user: user,option1: "m", option2: "n", option3: "o", option4: "p"});
             break;
     }
-    // res.render("healing/index.ejs", { mood: mood, user: user, adjective: getMoodAdjective(mood) });
 })
 
 app.get('/healing/:healing_method/:userMood?', async (req, res) => {
