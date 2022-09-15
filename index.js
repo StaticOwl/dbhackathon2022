@@ -146,7 +146,22 @@ app.get('/mood/:userMood', async (req, res) => {
     }
 })
 
-app.get('/healing/:healing_method/:userMood?', async (req, res) => {
+
+app.get('/healing/:userMood/:reason', async (req, res) => {
+    if (req.isAuthenticated()) {
+        var user = await User.findById(req.user._id);
+        delete user.password;
+        user.isSignedIn = true;
+    } else {
+        var user = new User();
+        user.isSignedIn = false;
+    }
+    var mood = req.params.userMood;
+    var reason = req.params.reason;
+    res.render('healing/index.ejs', { mood: mood, reason: reason, user: user });
+})
+
+app.get('/healing/:userMood/:reason/:healing_method?', async (req, res) => {
     if (req.isAuthenticated()) {
         var user = await User.findById(req.user._id);
         delete user.password;
@@ -163,8 +178,8 @@ app.get('/healing/:healing_method/:userMood?', async (req, res) => {
         case "music":
             res.render('healing/music.ejs', { mood: mood, healing_method: healing_method, user: user });
             break;
-        case "video":
-            res.render('healing/video.ejs', { mood: mood, healing_method: healing_method, user: user });
+        case "pictures":
+            res.render('healing/picture.ejs', { mood: mood, healing_method: healing_method, user: user });
             break;
         case "help":
             res.render('healing/help.ejs', { mood: mood, healing_method: healing_method, user: user });
@@ -172,11 +187,11 @@ app.get('/healing/:healing_method/:userMood?', async (req, res) => {
         case "workout":
             res.render('healing/workout.ejs', { mood: mood, healing_method: healing_method, user: user });
             break;
-        case "funny":
+        case "memes":
             res.render('healing/funny.ejs', { mood: mood, healing_method: healing_method, user: user });
             break;
-        case "quote":
-            res.render('healing/quote.ejs', { mood: mood, healing_method: healing_method, user: user });
+        case "inspiration":
+            res.render('healing/inspiration.ejs', { mood: mood, healing_method: healing_method, user: user });
             break;
         case "talktome":
             res.render('healing/talktome.ejs', { mood: mood, healing_method: healing_method, user: user });
