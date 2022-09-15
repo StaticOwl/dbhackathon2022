@@ -80,6 +80,8 @@ h1 {
   color: #ffffff;
 }
 
+
+
 .btn,
 .btn-lg {
   font-size: 1.25em;
@@ -119,6 +121,11 @@ h1 {
   margin: 0.5em auto;
   padding-left: 1em;
   padding-top: 1em;
+}
+
+.drop-wrap img{
+  width: min(10vw,50px);
+  height: auto;
 }
 
 .drop img {

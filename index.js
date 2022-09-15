@@ -129,7 +129,21 @@ app.get('/mood/:userMood', async (req, res) => {
         user.isSignedIn = false;
     }
     var mood = req.params.userMood;
-    res.render("healing/index.ejs", { mood: mood, user: user });
+    switch(mood){
+        case "anxious":
+            res.render("healing/index.ejs", { mood: mood, user: user, adjective: getMoodAdjective(mood) });
+            break;
+        case "sad":
+            res.render("healing/music.ejs", { mood: mood, user: user, adjective: getMoodAdjective(mood) });
+            break;
+        case "angry":
+            res.render("healing/music.ejs", { mood: mood, user: user, adjective: getMoodAdjective(mood) });
+            break;
+        case "lonely":
+            res.render("healing/music.ejs", { mood: mood, user: user, adjective: getMoodAdjective(mood) });
+            break;
+    }
+    // res.render("healing/index.ejs", { mood: mood, user: user, adjective: getMoodAdjective(mood) });
 })
 
 app.get('/healing/:healing_method/:userMood?', async (req, res) => {
@@ -246,6 +260,15 @@ function checkAuthenticated(req, res, next) {
         return next();
     } else {
         res.redirect("/users/login");
+    }
+}
+
+function getMoodAdjective(mood){
+    switch (mood){
+        case "angry":
+            return "anger";
+        default:
+            return mood+"ness";
     }
 }
 
