@@ -132,16 +132,16 @@ app.get('/mood/:userMood', async (req, res) => {
     var mood = req.params.userMood;
     switch(mood){
         case "anxious":
-            res.render("healing/mood.ejs", { mood: mood, user: user, option1: "a", option2: "b", option3: "c", option4: "d"});
+            res.render("healing/mood.ejs", { mood: mood, user: user, option1: "Stress at Work", option2: "Financial stress", option3: "personal relationship", option4: "Serious Medical illness"});
             break;
         case "sad":
-            res.render("healing/mood.ejs", { mood: mood, user: user,option1: "e", option2: "f", option3: "g", option4: "h"});
+            res.render("healing/mood.ejs", { mood: mood, user: user,option1: "Lost Someone", option2: "Failed", option3: "Loved One Left Me", option4: "Feel Like Crying"});
             break;
         case "angry":
-            res.render("healing/mood.ejs", { mood: mood, user: user,option1: "i", option2: "j", option3: "k", option4: "l"});
+            res.render("healing/mood.ejs", { mood: mood, user: user,option1: "Missing a promotion", option2: "Relationship difficulties", option3: "Bad Traffic", option4: "Traumatic Event Memories"});
             break;
         case "lonely":
-            res.render("healing/mood.ejs", { mood: mood, user: user,option1: "m", option2: "n", option3: "o", option4: "p"});
+            res.render("healing/mood.ejs", { mood: mood, user: user,option1: "Physical Isolation", option2: "Moving to a new location", option3: "Divorce", option4: "Lost Someone"});
             break;
     }
 })
@@ -180,6 +180,18 @@ app.get('/healing/talktome', async (req, res) => {
         user.isSignedIn = false;
     }
     res.render('healing/talktome.ejs', {user: user });
+})
+
+app.get('/analytics/analytics', async (req, res) => {
+    if (req.isAuthenticated()) {
+        var user = await User.findById(req.user._id);
+        delete user.password;
+        user.isSignedIn = true;
+    } else {
+        var user = new User();
+        user.isSignedIn = false;
+    }
+    res.render('analytics/analytics.ejs', {user: user });
 })
 
 app.get('/healing/:userMood/:reason', async (req, res) => {
