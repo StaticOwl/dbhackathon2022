@@ -146,6 +146,18 @@ app.get('/mood/:userMood', async (req, res) => {
     }
 })
 
+app.get('/healing/talktome', async (req, res) => {
+    if (req.isAuthenticated()) {
+        var user = await User.findById(req.user._id);
+        delete user.password;
+        user.isSignedIn = true;
+    } else {
+        var user = new User();
+        user.isSignedIn = false;
+    }
+    res.render('healing/talktome.ejs', {user: user });
+})
+
 
 app.get('/healing/:userMood/:reason', async (req, res) => {
     if (req.isAuthenticated()) {
@@ -192,9 +204,6 @@ app.get('/healing/:userMood/:reason/:healing_method?', async (req, res) => {
             break;
         case "inspiration":
             res.render('healing/inspiration.ejs', { mood: mood, healing_method: healing_method, user: user });
-            break;
-        case "talktome":
-            res.render('healing/talktome.ejs', { mood: mood, healing_method: healing_method, user: user });
             break;
         default:
             console.log("unrecognized healing method: " + healing_method);
