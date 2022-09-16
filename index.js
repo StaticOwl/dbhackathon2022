@@ -13,7 +13,7 @@ var app = express();
 var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 var bcrypt = require('bcrypt');
-var port = process.env.PORT || 3000;
+var port = 8585;
 var session = require('express-session');
 var flash = require('express-flash');
 var passport = require('passport');
@@ -72,7 +72,7 @@ app.use(methodOverride("_method"));
 app.use(flash());
 app.use(
     session({
-        secret: process.env.SESSION_SECRET,
+        secret: "abcd1234kjnfsksjdn",
         resave: false,
         saveUninitialized: false,
     })
