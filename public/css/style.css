@@ -7,8 +7,8 @@ body {
   width: -webkit-fill-available;  /* Mozilla-based browsers will ignore this. */
   width: fill-available;
   font-family: 'Poppins', sans-serif;
-  color: white;
-  background: center/auto no-repeat url(/images/samplebg.jpg);
+  color: #5EA7C8;
+  background: center/auto no-repeat url(/images/bck_image.jpeg);
   /* background-position: initial; */
   /* min-height: 100vh; */
   position: relative;
@@ -153,7 +153,7 @@ h1 {
 
 
 .mood-box {
-  border: 1px solid white;
+  border: 1px solid #5EA7C8;
   width: 45%;
   height: 100%;
   color: #ffffff;

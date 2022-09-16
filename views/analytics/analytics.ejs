@@ -1,0 +1,19 @@
+<%- include('../partials/header.ejs') %>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.min.js"></script>
+
+<select id="chartType">
+  <option value="angry">Angry</option>
+  <option value="depression">Depression</option>
+  <option value="sad">Sad</option>
+  <option value="anxiety">Anxiety</option>
+</select>
+<div id="chart" class="chart_container">
+  <canvas id="angryChart"></canvas>
+  <canvas id="depressionChart"></canvas>
+  <canvas id="sadChart"></canvas>
+  <canvas id="anxietyChart"></canvas>
+</div>
+<script src="/scripts/analytics.js"></script>
+
+<%- include('../partials/footer.ejs') %>
