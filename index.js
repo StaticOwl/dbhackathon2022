@@ -147,6 +147,18 @@ app.get('/mood/:userMood', async (req, res) => {
 })
 
 
+app.get('/healing/talktome', async (req, res) => {
+    if (req.isAuthenticated()) {
+        var user = await User.findById(req.user._id);
+        delete user.password;
+        user.isSignedIn = true;
+    } else {
+        var user = new User();
+        user.isSignedIn = false;
+    }
+    res.render('healing/talktome.ejs', {user: user });
+})
+
 app.get('/healing/:userMood/:reason', async (req, res) => {
     if (req.isAuthenticated()) {
         var user = await User.findById(req.user._id);
